@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Student Performance Dashboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     SIDEBAR
+======================================================== -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            SP
+        </div>
+
+        <div>
+
+            <h2>StudentPro</h2>
+
+            <span>Analytics</span>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a
+            href="#dashboard"
+            class="nav-link active"
+        >
+            <span>▦</span>
+            Dashboard
+        </a>
+
+
+        <a
+            href="#students"
+            class="nav-link"
+        >
+            <span>👥</span>
+            Students
+        </a>
+
+
+        <a
+            href="#analytics"
+            class="nav-link"
+        >
+            <span>▥</span>
+            Analytics
+        </a>
+
+
+        <a
+            href="#add"
+            class="nav-link"
+        >
+            <span>＋</span>
+            Add Student
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            <div>
+
+                <strong>System Online</strong>
+
+                <small>Python Backend</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =======================================================
+     MAIN
+======================================================== -->
+
+<main class="main">
+
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <p class="eyebrow">
+                ACADEMIC MANAGEMENT
+            </p>
+
+            <h1>
+                Student Performance
+            </h1>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+            <span id="currentDate"></span>
+
+            <button
+                class="refresh-btn"
+                onclick="loadDashboard()"
+            >
+                ↻ Refresh
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ===================================================
+         DASHBOARD
+    ==================================================== -->
+
+    <section id="dashboard">
+
+
+        <!-- STAT CARDS -->
+
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    👥
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Students
+                    </span>
+
+                    <strong id="totalStudents">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    %
+                </div>
+
+                <div>
+
+                    <span>
+                        Average Score
+                    </span>
+
+                    <strong id="averagePercentage">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Passed
+                    </span>
+
+                    <strong id="passedStudents">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon red">
+                    !
+                </div>
+
+                <div>
+
+                    <span>
+                        Failed
+                    </span>
+
+                    <strong id="failedStudents">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- CHARTS -->
+
+        <div class="chart-grid">
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            PERFORMANCE
+                        </p>
+
+                        <h2>
+                            Subject Average
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="bar-chart">
+
+                    <div class="bar-item">
+
+                        <div class="bar-label">
+
+                            <span>Python</span>
+
+                            <strong id="pythonAverage">
+                                0
+                            </strong>
+
+                        </div>
+
+                        <div class="bar-track">
+
+                            <div
+                                class="bar-fill"
+                                id="pythonBar"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-item">
+
+                        <div class="bar-label">
+
+                            <span>Mathematics</span>
+
+                            <strong id="mathsAverage">
+                                0
+                            </strong>
+
+                        </div>
+
+                        <div class="bar-track">
+
+                            <div
+                                class="bar-fill"
+                                id="mathsBar"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-item">
+
+                        <div class="bar-label">
+
+                            <span>DBMS</span>
+
+                            <strong id="dbmsAverage">
+                                0
+                            </strong>
+
+                        </div>
+
+                        <div class="bar-track">
+
+                            <div
+                                class="bar-fill"
+                                id="dbmsBar"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            GRADE DISTRIBUTION
+                        </p>
+
+                        <h2>
+                            Student Grades
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="grade-chart">
+
+                    <div class="grade-circle">
+
+                        <strong id="gradeTotal">
+                            0
+                        </strong>
+
+                        <span>
+                            Students
+                        </span>
+
+                    </div>
+
+
+                    <div class="grade-list">
+
+                        <div>
+                            <span>A+</span>
+                            <strong id="gradeAPlus">0</strong>
+                        </div>
+
+                        <div>
+                            <span>A</span>
+                            <strong id="gradeA">0</strong>
+                        </div>
+
+                        <div>
+                            <span>B</span>
+                            <strong id="gradeB">0</strong>
+                        </div>
+
+                        <div>
+                            <span>C</span>
+                            <strong id="gradeC">0</strong>
+                        </div>
+
+                        <div>
+                            <span>D</span>
+                            <strong id="gradeD">0</strong>
+                        </div>
+
+                        <div>
+                            <span>F</span>
+                            <strong id="gradeF">0</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- HIGHEST / LOWEST -->
+
+        <div class="performance-summary">
+
+            <div class="summary-box">
+
+                <span>Highest Percentage</span>
+
+                <strong id="highestPercentage">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <span>Lowest Percentage</span>
+
+                <strong id="lowestPercentage">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <span>Pass Rate</span>
+
+                <strong id="passRate">
+                    0%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ===================================================
+         ADD STUDENT
+    ==================================================== -->
+
+    <section
+        id="add"
+        class="panel form-panel"
+    >
+
+        <div class="panel-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    STUDENT MANAGEMENT
+                </p>
+
+                <h2>
+                    Add / Update Student
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <form id="studentForm">
+
+
+            <div class="input-group">
+
+                <label>
+                    Roll Number
+                </label>
+
+                <input
+                    type="number"
+                    id="rollNo"
+                    placeholder="e.g. 104"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Student Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter student name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Python
+                </label>
+
+                <input
+                    type="number"
+                    id="python"
+                    min="0"
+                    max="100"
+                    placeholder="0 - 100"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Mathematics
+                </label>
+
+                <input
+                    type="number"
+                    id="maths"
+                    min="0"
+                    max="100"
+                    placeholder="0 - 100"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    DBMS
+                </label>
+
+                <input
+                    type="number"
+                    id="dbms"
+                    min="0"
+                    max="100"
+                    placeholder="0 - 100"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-buttons">
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                    id="submitBtn"
+                >
+                    Add Student
+                </button>
+
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    onclick="resetForm()"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </section>
+
+
+    <!-- ===================================================
+         STUDENTS
+    ==================================================== -->
+
+    <section
+        id="students"
+        class="panel"
+    >
+
+        <div class="panel-header students-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    RECORDS
+                </p>
+
+                <h2>
+                    Student Records
+                </h2>
+
+            </div>
+
+
+            <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search student..."
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Roll No</th>
+
+                        <th>Student</th>
+
+                        <th>Python</th>
+
+                        <th>Maths</th>
+
+                        <th>DBMS</th>
+
+                        <th>Total</th>
+
+                        <th>Percentage</th>
+
+                        <th>Grade</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="studentTable">
+
+                </tbody>
+
+            </table>
+
+
+            <div
+                id="emptyMessage"
+                class="empty-message"
+                style="display: none;"
+            >
+
+                No students found.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         ANALYTICS
+    ==================================================== -->
+
+    <section
+        id="analytics"
+        class="panel"
+    >
+
+        <div class="panel-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    NUMPY ANALYTICS
+                </p>
+
+                <h2>
+                    Performance Analysis
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-grid">
+
+            <div class="analytics-item">
+
+                <span>
+                    Python Average
+                </span>
+
+                <strong id="analyticsPython">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="analytics-item">
+
+                <span>
+                    Maths Average
+                </span>
+
+                <strong id="analyticsMaths">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="analytics-item">
+
+                <span>
+                    DBMS Average
+                </span>
+
+                <strong id="analyticsDbms">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="analytics-item">
+
+                <span>
+                    Overall Average
+                </span>
+
+                <strong id="analyticsOverall">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        Student Performance & Analytics Dashboard
+
+        <span>
+            • Python + NumPy + OOP + CSV
+        </span>
+
+    </footer>
+
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
