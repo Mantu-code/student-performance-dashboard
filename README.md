@@ -27,12 +27,12 @@ This project demonstrates the practical use of Python programming, file handling
 
 🛠️ Technologies Used
 
-- **Language:** Python
-- **GUI:** Tkinter
-- **Data Storage:** CSV
-- **Data Analysis:** NumPy
-- **Visualization:** Matplotlib
-- **Version Control:** Git and GitHub
+- Language: Python
+- GUI: Tkinter
+- Data Storage: CSV
+- Data Analysis: NumPy
+- Visualization: Matplotlib
+- Version Control: Git and GitHub
 
 📚 Subjects Covered
 
@@ -102,20 +102,6 @@ python3 student_performance.py
 
 Use the actual entry-point filename if it differs. If the project includes a separate web interface, follow its corresponding startup instructions as well.
 
-📸 Project Screenshots
-
-Main Dashboard
-
-Add a screenshot of the application's main window here.
-
-![Main Dashboard](screenshots/dashboard.png)
-
-Performance Analysis
-
-Add a screenshot of your performance graph here.
-
-![Performance Graph](screenshots/performance-graph.png)
-
 🧠 Concepts Learned
 
 - Python functions and classes
@@ -138,6 +124,10 @@ Add a screenshot of your performance graph here.
 Mantu Kunda
 
 MCA — Cloud Computing and DevOps
+
+Chandigarh University
+
+linkedin: (https://linkedin.com/in/mantukunda715)
 
 GitHub: [@Mantu-code](https://github.com/Mantu-code)
 
